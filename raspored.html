@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<title>Raspored</title>
+	<style>
+	table{
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+
+	thead th{
+		background-color: #4169E1;
+	}
+	tr:nth-child(even){
+		background-color: 	#B0E0E6;
+	}
+	tr:nth-child(odd){
+		background-color:	#00BFFF;
+	}
+	a{
+		display: block;
+	}
+	</style>
+	<script>
+		$(document).ready(function(){
+		  $("#mojInput").on("keyup", function() {
+			var value = $(this).val().toLowerCase();
+			$("#myTable tr").filter(function() {
+			  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+		  });
+		});
+	</script>
+</head>
+<body>
+	<p> Milos Vukadinovic s7/19 </p>
+	<input type="text" id="mojInput" style="margin-bottom: 20px;" >
+	<table>
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>Predmet</th>
+				<th>Tip</th>
+				<th>Nastavnik</th>
+				<th>Grupe</th>
+				<th>Dan</th>
+				<th>Termin</th>
+				<th>Ucionica</th>
+			</tr>
+		</thead>
+		<tbody id="myTable">
+			{% for i in raspored %}
+			<tr>
+				<td>{{i[0]}}</td>
+				<td>{{i[1]}}</td>
+				<td>{{i[2]}}</td>
+				<td>{{i[3]}}</td>
+				<td>{{i[4]}}</td>
+				<td>{{i[5]}}</td>
+				<td>{{i[6]}}</td>
+				<td>{{i[7]}}</td>  
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	<table>
+		<div style="display: inline-block; vertical-align: top;">
+		{% for i in jed %}
+			<p>{{i[0]}}</p>
+		{% endfor %}
+		</div>
+		<div style="display: inline-block;">
+		{% for i in jed2 %}
+			<p>{{i[0]}}</p>
+		{% endfor %}
+		</div>
+	</table>
+</body>
+</html>
